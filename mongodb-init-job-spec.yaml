@@ -1,0 +1,42 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: tech-hub-mongodb-init-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: init
+        image: mongo:3.6
+        command:
+        - mongo
+        args:
+        - mongodb://tech-hub-mongodb-replicaset-0:27017,tech-hub-mongodb-replicaset-1:27017,tech-hub-mongodb-replicaset-2:27017/admin?replicaSet=rs0
+        - --username
+        - 'admin'
+        - --username
+        - "${ADMIN_PASSWORD}"
+        - --eval
+        - "var portfolio_password = '${PORTFOLIO_PASSWORD}';"
+        - /scripts/init.js
+        env:
+        - name: ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: tech-hub-mongodb-auth-admin-credentials
+              key: password
+        - name: PORTFOLIO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: tech-hub-mongodb-auth-portfolio-credentials
+              key: password
+        volumeMounts:
+        - name: scripts
+          mountPath: /scripts/
+      volumes:
+        - name: scripts
+          configMap:
+            name: tech-hub-mongodb-scripts
+            defaultMode: 0744
+      restartPolicy: Always
+  backoffLimit: 100

@@ -1,0 +1,46 @@
+language: bash
+sudo: required
+dist: trusty
+services:
+  # - docker
+git:
+  depth: 1
+  submodules: false
+branches:
+  only:
+  - master
+# cache:
+#   directories:
+#     - "node_modules"
+env:
+  global:
+    TECH_HUB_ENV='production'
+# addons:
+#   ssh_known_hosts: portfolioapi.joshbacon.name
+#   ssh_known_hosts: portfolio.joshbacon.name
+before_install:
+  - echo "Before Install..."
+install:
+  - echo "Install..."
+before_script:
+  - echo "Before Script..."
+script:
+  - echo "Script..."
+after_script:
+  - echo "After Script..."
+before_cache:
+  - echo "Before Cache..."
+after_success:
+  - echo "After Success..."
+after_failure:
+  - echo "After Failure..."
+before_deploy:
+  - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then source ./travis-env.sh; fi
+deploy:
+  provider: script
+  script: if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./generate_spec.sh | kubectl apply -f -; fi
+  on:
+    branch: master
+  skip_cleanup: true
+after_deploy:
+  - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then kubectl create -f mongodb-init-job-spec.yaml; fi
