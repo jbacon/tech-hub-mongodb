@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tech-hub-mongodb-replicaset-1-node-port
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 32367
+    port: 27017
+    protocol: TCP
+    targetPort: 27017
+  selector:
+    app: tech-hub-mongodb-replicaset
+    release: tech-hub
+    statefulset.kubernetes.io/pod-name: tech-hub-mongodb-replicaset-1
+  type: NodePort
