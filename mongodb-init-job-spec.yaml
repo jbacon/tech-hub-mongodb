@@ -38,5 +38,5 @@ spec:
           configMap:
             name: tech-hub-mongodb-scripts
             defaultMode: 0744
-      restartPolicy: Always
+      restartPolicy: OnFailure
   backoffLimit: 100
