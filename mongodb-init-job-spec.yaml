@@ -14,7 +14,7 @@ spec:
         - mongodb://tech-hub-mongodb-replicaset-0:27017,tech-hub-mongodb-replicaset-1:27017,tech-hub-mongodb-replicaset-2:27017/admin?replicaSet=rs0
         - --username
         - 'admin'
-        - --username
+        - --password
         - "${ADMIN_PASSWORD}"
         - --eval
         - "var portfolio_password = '${PORTFOLIO_PASSWORD}';"
