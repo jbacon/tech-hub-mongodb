@@ -15,7 +15,7 @@ spec:
         - --username
         - 'admin'
         - --password
-        - "$(MESSAGE)"
+        - $(ADMIN_PASSWORD)
         - --eval
         - "var portfolio_password = '${PORTFOLIO_PASSWORD}';"
         - /scripts/init.js

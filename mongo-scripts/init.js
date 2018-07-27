@@ -1,1 +1,1 @@
-load('/scripts/init-db-portfolio')
+load('/scripts/init-db-portfolio.js')
