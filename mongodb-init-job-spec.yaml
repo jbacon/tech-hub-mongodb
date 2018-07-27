@@ -11,11 +11,11 @@ spec:
         command:
         - mongo
         args:
-        - mongodb://tech-hub-mongodb-replicaset-0.tech-hub-mongodb-replicaset.default.svc.cluster.local:27017,tech-hub-mongodb-replicaset-1.tech-hub-mongodb-replicaset.default.cluster.local:27017,tech-hub-mongodb-replicaset-2.tech-hub-mongodb-replicaset.default.cluster.local:27017/admin?replicaSet=rs0
+        - mongodb://tech-hub-mongodb-replicaset-0.tech-hub-mongodb-replicaset.default.svc.cluster.local:27017,tech-hub-mongodb-replicaset-1.tech-hub-mongodb-replicaset.default.svc.cluster.local:27017,tech-hub-mongodb-replicaset-2.tech-hub-mongodb-replicaset.default.svc.cluster.local:27017/admin?replicaSet=rs0
         - --username
         - 'admin'
         - --password
-        - "${ADMIN_PASSWORD}"
+        - ${ADMIN_PASSWORD}
         - --eval
         - "var portfolio_password = '${PORTFOLIO_PASSWORD}';"
         - /scripts/init.js
