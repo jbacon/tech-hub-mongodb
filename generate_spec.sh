@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-if [ "TECH_HUB_ENV" == 'production' ]; then
+if [ "${TECH_HUB_ENV}" == 'production' ]; then
 	PERSISTENT_VOLUME='true'
 else
 	PERSISTENT_VOLUME='false'
@@ -40,7 +40,7 @@ kubectl create secret generic tech-hub-mongodb-auth-portfolio-credentials \
 --dry-run \
 | cat
 
-if [ "TECH_HUB_ENV" != 'production' ]; then
+if [ "${TECH_HUB_ENV}" != 'production' ]; then
 cat ./templates/services/tech-hub-mongodb-replicaset-0-node-port.yaml
 cat ./templates/services/tech-hub-mongodb-replicaset-1-node-port.yaml
 cat ./templates/services/tech-hub-mongodb-replicaset-2-node-port.yaml
