@@ -40,6 +40,12 @@ kubectl create secret generic tech-hub-mongodb-auth-portfolio-credentials \
 --dry-run \
 | cat
 
+if [ "TECH_HUB_ENV" != 'production' ]; then
+cat ./templates/services/tech-hub-mongodb-replicaset-0-node-port.yaml
+cat ./templates/services/tech-hub-mongodb-replicaset-1-node-port.yaml
+cat ./templates/services/tech-hub-mongodb-replicaset-2-node-port.yaml
+fi
+
 helm fetch \
 --repo https://kubernetes-charts.storage.googleapis.com \
 --untar \
@@ -58,12 +64,3 @@ helm template \
 --set auth.existingAdminSecret=tech-hub-mongodb-auth-admin-credentials \
 ${PWD}/mongodb-replicaset \
 | cat
-
-if [ "TECH_HUB_ENV" != 'production' ]; then
-echo "---"
-kubectl apply \
---recursive \
--f ./templates/ \
---dry-run \
---output yaml
-fi

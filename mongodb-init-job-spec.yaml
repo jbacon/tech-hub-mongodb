@@ -17,7 +17,7 @@ spec:
         - --password
         - $(ADMIN_PASSWORD)
         - --eval
-        - "var portfolio_password = '${PORTFOLIO_PASSWORD}';"
+        - "var portfolio_password = '$(PORTFOLIO_PASSWORD)';"
         - /scripts/init.js
         env:
         - name: ADMIN_PASSWORD
