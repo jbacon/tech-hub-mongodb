@@ -59,7 +59,7 @@ before_deploy:
   - helm init --client-only
 deploy:
   provider: script
-  script: bash ./generate_spec.sh | kubectl apply --overwrite --force -f -
+  script: bash ./generate_spec.sh | kubectl apply -f -
   on:
     branch: master
   skip_cleanup: true
