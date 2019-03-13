@@ -62,5 +62,6 @@ helm template \
 --set auth.enabled=true \
 --set auth.existingKeySecret=tech-hub-mongodb-auth-key \
 --set auth.existingAdminSecret=tech-hub-mongodb-auth-admin-credentials \
+--set resources=requests.cpu=20m,limits.cpu=50m \
 ${PWD}/mongodb-replicaset \
 | cat
