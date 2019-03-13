@@ -30,6 +30,11 @@ spec:
             secretKeyRef:
               name: tech-hub-mongodb-auth-portfolio-credentials
               key: password
+        resources:
+          requests:
+            cpu: 20m
+          limits:
+            cpu: 50m
         volumeMounts:
         - name: scripts
           mountPath: /scripts/
