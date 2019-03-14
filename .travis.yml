@@ -51,7 +51,7 @@ before_deploy:
     kubectl config set-context context \
     --cluster='cluster' \
     --user='user' \
-    --namespace='default'
+    --namespace='production'
   - kubectl config use-context context
   - curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > ${HOME}/get_helm.sh
   - chmod 700 ${HOME}/get_helm.sh
