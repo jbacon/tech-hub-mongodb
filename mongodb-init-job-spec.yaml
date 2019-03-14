@@ -11,7 +11,7 @@ spec:
         command:
         - mongo
         args:
-        - mongodb://tech-hub-mongodb-replicaset-0.tech-hub-mongodb-replicaset.default.svc.cluster.local:27017,tech-hub-mongodb-replicaset-1.tech-hub-mongodb-replicaset.default.svc.cluster.local:27017,tech-hub-mongodb-replicaset-2.tech-hub-mongodb-replicaset.default.svc.cluster.local:27017/admin?replicaSet=rs0
+        - mongodb://tech-hub-mongodb-replicaset-0.tech-hub-mongodb-replicaset.production.svc.cluster.local:27017,tech-hub-mongodb-replicaset-1.tech-hub-mongodb-replicaset.production.svc.cluster.local:27017,tech-hub-mongodb-replicaset-2.tech-hub-mongodb-replicaset.production.svc.cluster.local:27017/admin?replicaSet=rs0
         - --username
         - 'admin'
         - --password
