@@ -50,7 +50,7 @@ helm fetch \
 --repo https://kubernetes-charts.storage.googleapis.com \
 --untar \
 --destination ${PWD}/ \
---version 3.4.1 \
+--version 3.9.2 \
 mongodb-replicaset
 
 helm template \
@@ -58,10 +58,10 @@ helm template \
 --name tech-hub \
 --namespace ${K8S_NAMESPACE} \
 --set image.tag=3.6 \
+--set image.pullPolicy=Always \
 --set persistentVolume.enabled=${PERSISTENT_VOLUME} \
 --set auth.enabled=true \
 --set auth.existingKeySecret=tech-hub-mongodb-auth-key \
 --set auth.existingAdminSecret=tech-hub-mongodb-auth-admin-credentials \
---set resources.requests.cpu=20m,resources.limits.cpu=50m \
 ${PWD}/mongodb-replicaset \
 | cat
